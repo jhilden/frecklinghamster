@@ -1,0 +1,59 @@
+%h1 Week View
+
+.well
+  Displaying facts from
+  %strong= l(@week_start, format: :with_day_name)
+  to
+  %strong= l(@week_end, format: :with_day_name)
+
+%table.table.table-bordered.table-hover
+  %thead
+    %tr
+      %th
+        id
+      %th
+        activity
+      %th
+        description
+      %th
+        time
+      %th
+        duration
+      %th
+        action
+  %tbody
+    -@facts.group_by{|f| f.start_time.to_date }.each do |day, facts|
+      %tr
+        %td{colspan: 6}
+          = l(day, format: :with_day_name)
+      -facts.each do |fact|
+        %tr
+          %td
+            = fact.id
+          %td
+            = fact.activity.name
+          %td
+            = fact.description
+          %td
+            = l(fact.start_time, format: :time_only)
+            &minus;
+            = l(fact.end_time, format: :time_only)
+          %td
+            = fact.duration.join(":")
+          %td
+            = link_to "export", ""
+
+.pagination.pagination-centered
+  %ul
+    %li
+      = link_to "<<", week_exports_path(week_nr: @week_nr - 1, year: @year)
+    %li
+      = link_to @week_nr - 1, week_exports_path(week_nr: @week_nr - 1, year: @year)
+    %li.active
+      = link_to @week_nr, "#"
+    %li
+      = link_to @week_nr + 1, week_exports_path(week_nr: @week_nr + 1, year: @year)
+    %li
+      = link_to ">>", week_exports_path(week_nr: @week_nr + 1, year: @year)
+
+

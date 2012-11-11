@@ -3,3 +3,9 @@
 
 en:
   hello: "Hello world"
+  date:
+    formats:
+      with_day_name: "%A, %B %d, %Y"
+  time:
+    formats:
+      time_only: "%H:%M"
