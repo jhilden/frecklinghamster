@@ -13,7 +13,7 @@
   %h4 Total
   = render_minutes(@facts.inject(0) {|sum, f| sum + f.duration_in_minutes }).join(':')
 
-%table.table.table-bordered.table-hover
+%table#js-facts-table.table.table-bordered.table-hover.table-condensed
   %thead
     %tr
       %th
@@ -30,11 +30,11 @@
         action
   %tbody
     -@facts.group_by{|f| f.start_time.to_date }.each do |day, facts| # day
-      %tr
+      %tr{data: {day: day}}
         %td{colspan: 6}
           = l(day, format: :with_day_name)
       -facts.each do |fact|
-        %tr
+        %tr{class: ("success" if fact.exported?), data: {day: day}}
           %td
             = fact.id
           %td
@@ -50,10 +50,17 @@
           %td
             = fact.duration.join(":")
           %td
-            = link_to "export", export_fact_path(fact), class: 'btn'
-      %tr
+            -unless fact.exported?
+              = link_to "export", export_fact_path(fact), method: :put, class: 'btn'
+              = check_box_tag :export, fact.id, false, data: {role: 'fact-export-checkbox', minutes: fact.duration_in_minutes}
+              = link_to "mark as exported", mark_as_exported_fact_path(fact), method: :put
+      %tr{data: {day: day}}
         %td{colspan: 6}
-          = render 'grouped_by_activity', facts: facts
+          .pull-left
+            = render 'grouped_by_activity', facts: facts
+          = form_tag batch_export_facts_path, method: :put, id: "batch-export-facts-#{day}", class: "pull-right" do
+            = text_field_tag :minutes, 0, disabled: true
+            = submit_tag "export", disabled: true, class: 'btn'
 
 .pagination.pagination-centered
   %ul

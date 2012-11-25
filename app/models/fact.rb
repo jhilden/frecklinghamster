@@ -16,4 +16,15 @@ class Fact < ActiveRecord::Base
   def duration_in_minutes
     ((end_time - start_time)/60).to_i
   end
+
+  def exported?
+    exported_at.present?
+  end
+
+  def freckle_tags_description_string
+    # http://letsfreckle.com/help/#faq_14
+    tags_description = tags.select{|t| !t.name.start_with?('@') }.map(&:name).join(', ') # don't include '@cowoco' tags, etc.
+    tags_description += ', ' unless tags_description.blank?
+    tags_description += "!#{description}"
+  end
 end

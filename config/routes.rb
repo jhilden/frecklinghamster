@@ -15,10 +15,12 @@ Frecklinghamster::Application.routes.draw do
 
   resources :facts do
     member do
-      get :export
+      put :export
+      put :mark_as_exported
     end
     collection do
       get :week
+      put :batch_export
     end
   end
 

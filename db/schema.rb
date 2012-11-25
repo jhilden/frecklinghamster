@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20121125152709) do
 
   create_table "activities", :force => true do |t|
     t.string  "name",           :limit => 500
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(:version => 0) do
     t.timestamp "start_time"
     t.timestamp "end_time"
     t.string    "description", :limit => nil
+    t.datetime  "exported_at"
   end
 
 # Could not dump table "tags" because of following StandardError
