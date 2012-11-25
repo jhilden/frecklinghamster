@@ -24,9 +24,9 @@ gem 'jquery-rails'
 gem 'haml-rails'
 gem 'rails-i18n'
 gem 'bootstrap-sass'
+gem 'compass-rails'
 
 group :development do
-  gem 'pry'
   gem 'pry-debugger'
   gem 'pry-rails'
 end

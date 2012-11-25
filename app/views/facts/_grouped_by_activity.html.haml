@@ -1,4 +1,7 @@
-- facts.group_by(&:activity_id).each do |activity_id, facts|
-  %div
-    %span{title: activity_id}= facts.first.activity.name
-    = render_minutes(facts.inject(0) {|sum, f| sum + f.duration_in_minutes }).join(':')
+- if facts.any?
+  %ul.activity-times
+    - facts.group_by(&:activity_id).each do |activity_id, facts|
+      %li{title: activity_id}
+        .activity-color{style: "background-color: #{facts.first.activity.color}"}
+        = link_to facts.first.activity.name, facts.first.activity
+        = render_minutes(facts.inject(0) {|sum, f| sum + f.duration_in_minutes }).join(':')

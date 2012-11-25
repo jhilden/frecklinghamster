@@ -1,1 +1,25 @@
 @import bootstrap
+@import compass
+
+$padding: 10px
+$border-color: #ddd
+
+.activity-times
+  +horizontal-list
+  padding: $padding/2 $padding
+  border: 1px solid $border-color
+  +border-radius
+
+.activity-color
+  width: 1em
+  height: 1em
+  display: inline-block
+  background-color: white
+
+.facts-export-form
+  padding: $padding/2 $padding
+  border: 1px solid $border-color
+  +border-radius
+
+  > input[type=text]
+    margin-bottom: 0px
