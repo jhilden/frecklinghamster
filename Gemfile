@@ -25,6 +25,13 @@ gem 'haml-rails'
 gem 'rails-i18n'
 gem 'bootstrap-sass'
 
+group :development do
+  gem 'pry'
+  gem 'pry-debugger'
+  gem 'pry-rails'
+end
+
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

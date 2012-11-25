@@ -6,6 +6,13 @@
   to
   %strong= l(@week_end, format: :with_day_name)
 
+.well
+  %h4 Projects
+  = render 'grouped_by_activity', facts: @facts
+
+  %h4 Total
+  = render_minutes(@facts.inject(0) {|sum, f| sum + f.duration_in_minutes }).join(':')
+
 %table.table.table-bordered.table-hover
   %thead
     %tr
@@ -14,7 +21,7 @@
       %th
         activity
       %th
-        description
+        description & tags
       %th
         time
       %th
@@ -22,7 +29,7 @@
       %th
         action
   %tbody
-    -@facts.group_by{|f| f.start_time.to_date }.each do |day, facts|
+    -@facts.group_by{|f| f.start_time.to_date }.each do |day, facts| # day
       %tr
         %td{colspan: 6}
           = l(day, format: :with_day_name)
@@ -31,9 +38,11 @@
           %td
             = fact.id
           %td
-            = fact.activity.name
+            %span{title: fact.activity.id}= fact.activity.name
           %td
             = fact.description
+            - fact.tags.each do |tag|
+              = link_to tag.name, tag
           %td
             = l(fact.start_time, format: :time_only)
             &minus;
@@ -41,19 +50,22 @@
           %td
             = fact.duration.join(":")
           %td
-            = link_to "export", ""
+            = link_to "export", export_fact_path(fact), class: 'btn'
+      %tr
+        %td{colspan: 6}
+          = render 'grouped_by_activity', facts: facts
 
 .pagination.pagination-centered
   %ul
     %li
-      = link_to "<<", week_exports_path(week_nr: @week_nr - 1, year: @year)
+      = link_to "<<", week_facts_path(week_nr: @week_nr - 1, year: @year)
     %li
-      = link_to @week_nr - 1, week_exports_path(week_nr: @week_nr - 1, year: @year)
+      = link_to @week_nr - 1, week_facts_path(week_nr: @week_nr - 1, year: @year)
     %li.active
       = link_to @week_nr, "#"
     %li
-      = link_to @week_nr + 1, week_exports_path(week_nr: @week_nr + 1, year: @year)
+      = link_to @week_nr + 1, week_facts_path(week_nr: @week_nr + 1, year: @year)
     %li
-      = link_to ">>", week_exports_path(week_nr: @week_nr + 1, year: @year)
+      = link_to ">>", week_facts_path(week_nr: @week_nr + 1, year: @year)
 
 

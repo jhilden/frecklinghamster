@@ -1,0 +1,25 @@
+%h1 Activities (Projects)
+
+
+%table.table.table-bordered.table-hover
+  %thead
+    %tr
+      %th
+        id
+      %th
+        Name
+      %th
+        Category
+      %th
+        Facts
+
+  -@activities.each do |activity|
+    %tr
+      %td{style: ("color: red;" if activity.facts.count == 0)}
+        = activity.id
+      %td
+        = activity.name
+      %td
+        = activity.category.name  if activity.category
+      %td
+        = activity.facts.count
