@@ -3,6 +3,9 @@ class Fact < ActiveRecord::Base
   belongs_to :activity
   has_and_belongs_to_many :tags, join_table: 'fact_tags'
 
+  scope :exported, where(:exported_at, nil)
+  scope :before_or_on, lambda {|date| where("start_time <= ?", date.end_of_day) }
+
   def duration
     diff = end_time - start_time
     minutes, seconds = diff.divmod(60)
