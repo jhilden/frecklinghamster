@@ -39,6 +39,7 @@
             = fact.id
           %td
             .activity-color{style: "background-color: #{fact.activity.color}"}
+              = "?" unless fact.activity.color
             %span{title: fact.activity.id}= fact.activity.name
           %td
             = fact.description
