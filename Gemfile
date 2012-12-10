@@ -13,6 +13,8 @@ gem 'sqlite3'
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
+  gem 'bootstrap-sass'
+  gem 'compass-rails'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
@@ -23,8 +25,6 @@ end
 gem 'jquery-rails'
 gem 'haml-rails'
 gem 'rails-i18n'
-gem 'bootstrap-sass'
-gem 'compass-rails'
 
 group :development do
   gem 'pry-debugger'
