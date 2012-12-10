@@ -1,0 +1,12 @@
+class Freckle
+  # Hamster activity id to Freckle project id mapping
+  PROJECT_MAPPING = {
+    23 => 1337
+  }
+  PROJECT_MAPPING_ARRAY = PROJECT_MAPPING.to_a
+
+  # test
+  API_TOKEN = 'lx3gi6pxdjtjn57afp8c2bv1me7g89j'
+  DOMAIN = 'apitest.letsfreckle.com'
+  USER = 'test@example.com'
+end
