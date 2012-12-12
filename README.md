@@ -23,40 +23,43 @@ Hamster stores it's data in a simple sqlite database and FrecklingHmaster is jus
 
 Installation should go as follows:
 
-1. Clone the repository
+1.) Clone the repository
 
     git clone git@github.com:jhilden/frecklinghamster.git
 
-2. Install gem dependencies using Bundler
+2.) Install gem dependencies using Bundler
 
-   cd frecklinghamster
-   bundle install
+    cd frecklinghamster
+    bundle install
 
-3. Configure the path to the hamster database
+3.) Configure the path to the hamster database
 
-   cp config/database.yml.example config/database.yml
+    cp config/database.yml.example config/database.yml
   
-   # entry for development database should be something like:
-   database: /home/username/.local/share/hamster-applet/hamster.db
+    # entry for development database should be something like:
+    database: /home/username/.local/share/hamster-applet/hamster.db
 
-4. Configure Freckle API access
+4.) Configure Freckle API access
 
-  cp config/initializers/freckle.rb.example config/initializers/freckle.rb
+    cp config/initializers/freckle.rb.example config/initializers/freckle.rb
 
 (fill with your respective data)
 
-5. Migrate the database
+5.) Migrate the database
 
-   rake db:migrate
+    rake db:migrate
 
 (this will add an `exported_at` column to the time entries in the database, to keep track of which entries have already been exported to Freckle)
 
-6. Start the app/server
+6.) Start the app/server
 
-   rails s
+    rails server
 
-7. Open the app in your browser
+7.) Open the app in your browser
 
-   http://localhost:3000/
+    http://localhost:3000/
 
 
+In the end it should look similar to this screenshot:
+
+![screenshot](https://raw.github.com/jhilden/frecklinghamster/master/doc/frecklinghamster.png)
