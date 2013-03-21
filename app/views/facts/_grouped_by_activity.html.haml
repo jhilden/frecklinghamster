@@ -5,4 +5,4 @@
         .activity-color{style: "background-color: #{facts.first.activity.color}"}
           = "?" unless facts.first.activity.color
         = link_to facts.first.activity.name, facts.first.activity
-        = render_minutes(facts.inject(0) {|sum, f| sum + f.duration_in_minutes }).join(':')
+        = render_minutes(facts.sum {|f| f.duration_in_minutes }).join(':')
