@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.8'
+gem 'rails', '~> 3.2.12'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -29,6 +29,8 @@ gem 'rails-i18n'
 group :development do
   gem 'pry-debugger'
   gem 'pry-rails'
+  gem 'binding_of_caller'
+  gem 'better_errors'
 end
 
 
