@@ -7,6 +7,7 @@ class Fact < ActiveRecord::Base
   scope :before_or_on, lambda {|date| where("start_time <= ?", date.end_of_day) }
 
   def duration
+    return ["0", "00"]  unless start_time.present? && end_time.present?
     diff = end_time - start_time
     minutes, seconds = diff.divmod(60)
     hours, minutes = minutes.divmod(60)
@@ -17,6 +18,7 @@ class Fact < ActiveRecord::Base
   end
 
   def duration_in_minutes
+    return 0  unless end_time.present? && start_time.present?
     ((end_time - start_time)/60).to_i
   end
 

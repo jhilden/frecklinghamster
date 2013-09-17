@@ -48,7 +48,7 @@
           %td
             = l(fact.start_time, format: :time_only)
             &minus;
-            = l(fact.end_time, format: :time_only)
+            = l(fact.end_time, format: :time_only) if fact.end_time.present?
           %td
             = fact.duration.join(":")
           %td
