@@ -2,9 +2,9 @@
 
 .well
   Displaying facts from
-  %strong= l(@week_start, format: :with_day_name)
+  %strong= l(@week_start.to_date, format: :with_day_name)
   to
-  %strong= l(@week_end, format: :with_day_name)
+  %strong= l(@week_end.to_date, format: :with_day_name)
 
 .well
   %h4 Projects
@@ -29,11 +29,11 @@
       %th
         action
   %tbody
-    -@facts.group_by{|f| f.start_time.to_date }.each do |day, facts| # day
+    - @facts.group_by{|f| f.start_time.to_date }.each do |day, facts| # day
       %tr{data: {day: day}}
         %td{colspan: 6}
           = l(day, format: :with_day_name)
-      -facts.each do |fact|
+      - facts.each do |fact|
         %tr{class: ("success" if fact.exported?), data: {day: day}}
           %td
             = fact.id
