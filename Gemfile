@@ -27,7 +27,7 @@ gem 'haml-rails'
 gem 'rails-i18n'
 
 group :development do
-  gem 'pry-debugger'
+  gem 'pry-byebug'
   gem 'pry-rails'
   gem 'binding_of_caller'
   gem 'better_errors'
